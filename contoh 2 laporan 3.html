@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>contoh 2 Laporan- 03</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- SweetAlert2 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+      padding-top: 40px;
+    }
+
+    .btn-primary {
+      width: 100%;
+    }
+        
+  </style>
+</head>
+<body>
+   <div class="container form-container">
+        <h2 class="text-center mb-4">Laporan Praktikum - 03</h2>
+        <form id="myForm">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="name" class="form-label">Masukkan Nama:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Masukkan Nama Kamu" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="nim" class="form-label">Masukkan NIM:</label>
+                    <input type="number" class="form-control" id="nim" placeholder="Masukkan NIM Kamu" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="asal" class="form-label">Masukkan Asal Kamu:</label>
+                    <input type="text" class="form-control" id="asal" placeholder="Masukkan data di sini" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="dosen" class="form-label">Pilih Dosen Favorit:</label>
+                    <select id="dosen" class="form-control" required>
+                        <option selected disabled>Pilih salah satu</option>
+                        <option>Pak Agus Mulyanto</option>
+                        <option>Bu Yuni Roza</option>
+                        <option>Bu Yessy Asri</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="tanggal" class="form-label">Pilih Tanggal Lahir anda</label>
+                    <input type="date" class="form-control" id="tanggal" required>
+                </div>
+            </div>
+
+            <div class="form-group row align-items-center mb-3">
+              <label class="font-weight-bold col-md-3">Tulis Hal favorit Kamu:</label>
+              <div class="col-md-4">
+                <label for="favorite" class="form-label">Masukkan Nama Teman Favorit</label>
+                <input
+                type="text"
+                class="form-control"
+                id="favorite"
+                placeholder="Contoh: Budi"
+                required
+                />
+               </div>
+               
+               <div class="col-md-5">
+                <label for="ai" class="form-label">Masukkan AI Favorit:</label>
+                <input
+                type="text"
+                class="form-control"
+                id="ai"
+                placeholder="Contoh: ChatGPT"
+                required
+                />
+              </div>
+            </div>
+
+             <button type="button" class="btn btn-primary" onclick="showAlert()"> Kirim </button>
+    </form>
+  </div>
+      
+  <!-- SweetAlert2 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Bootstrap JS (for general UI, not modal) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+ <script>
+  function showAlert() {
+    const name = document.getElementById("name").value.trim();
+    const nim = document.getElementById("nim").value.trim();
+    const tanggal = document.getElementById("tanggal").value.trim();
+    const dosen = document.getElementById("dosen").value;
+    const asal = document.getElementById("asal").value.trim();
+    const favorite = document.getElementById("favorite").value.trim();
+    const ai = document.getElementById("ai").value.trim();
+
+    if (!name) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Nama wajib diisi!',
+        confirmButtonColor: '#3085d6'
+      });
+      return;
+    }
+
+    if (!nim) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'NIM belum diisi!',
+        confirmButtonColor: '#3085d6'
+      });
+      return;
+    }
+
+    if (!tanggal) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Tanggal lahir belum diisi!',
+        confirmButtonColor: '#3085d6'
+      });
+      return;
+    }
+
+    if (!dosen || dosen === "Pilih salah satu") {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Dosen favorit belum dipilih!',
+        confirmButtonColor: '#3085d6'
+      });
+      return;
+    }
+
+    if (!asal) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Asal belum diisi!',
+        confirmButtonColor: '#3085d6'
+      });
+      return;
+    }
+
+    if (!favorite) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Nama teman favorit belum diisi!',
+        confirmButtonColor: '#3085d6'
+      });
+      return;
+    }
+
+    if (!ai) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'AI favorit belum diisi!',
+        confirmButtonColor: '#3085d6'
+      });
+      return;
+    }
+
+      // konfirmasi tampilkan satu per satu
+    Swal.fire({
+      icon: 'info',
+      title: 'Nama Kamu:',
+      text: name,
+      confirmButtonColor: '#3085d6'
+    }).then(() => {
+      Swal.fire({
+        icon: 'info',
+        title: 'NIM Kamu:',
+        text: nim,
+        confirmButtonColor: '#3085d6'
+      }).then(() => {
+        Swal.fire({
+          icon: 'info',
+          title: 'Asal Kamu:',
+          text: asal,
+          confirmButtonColor: '#3085d6'
+        }).then(() => {
+          Swal.fire({
+            icon: 'info',
+            title: 'Dosen Favorit:',
+            text: dosen,
+            confirmButtonColor: '#3085d6'
+          }).then(() => {
+            Swal.fire({
+              icon: 'info',
+              title: 'Tanggal Lahir Kamu:',
+              text: tanggal,
+              confirmButtonColor: '#3085d6'
+            }).then(() => {
+              Swal.fire({
+                icon: 'info',
+                title: 'Teman Favorit Kamu:',
+                text: favorite,
+                confirmButtonColor: '#3085d6'
+              }).then(() => {
+                Swal.fire({
+                  icon: 'info',
+                  title: 'AI Favorit Kamu:',
+                  text: ai,
+                  confirmButtonColor: '#3085d6'
+                }).then(() => {
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: 'Form berhasil dikirim.',
+                    confirmButtonColor: '#3085d6'
+                  });
+                  document.getElementById("myForm").reset();
+                });
+              });
+            });
+          });
+        });
+      });
+    });
+  }
+</script>
+</body>
+</html>
